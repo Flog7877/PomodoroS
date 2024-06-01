@@ -5,44 +5,51 @@ body {
     font-family: sans-serif; 
     line-height: 1.5; 
     min-height: 100vh; 
-    background: #f3f3f3; 
+    background: #161618; 
     flex-direction: column; 
     margin: 0; 
 } 
+
+.status {
+    color: white;
+    font-weight: bold;
+    font-size: 75px;
+}
   
 .main { 
-    background-color: #fff; 
+    background-color: #212124; 
     border-radius: 15px; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
     padding: 10px 20px; 
     transition: transform 0.2s; 
-    width: 500px; 
-    height: 400px; 
+    width: 700px; 
+    height: 600px; 
     text-align: center; 
 } 
   
 .timer-circle { 
     border-radius: 50%; 
-    width: 200px; 
-    height: 200px; 
+    width: 400px; 
+    height: 400px; 
     margin: 20px auto; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    font-size: 25px; 
-    color: crimson; 
-    border: 8px solid #3498db; 
+    font-size: 75px; 
+    color: white; 
+    border: 8px solid #4da9ff; 
 } 
   
 .control-buttons { 
-    margin-top: 75px; 
+    margin-top: 75px;
     display: flex; 
     justify-content: space-evenly; 
 } 
   
 .control-buttons button { 
-    background-color: #3498db; 
-    color: #fff; 
+    background-color: #4da9ff; 
+    /*color: #fff;*/
+    color: black; 
     border: none; 
     padding: 10px 20px; 
     border-radius: 5px; 
@@ -50,6 +57,47 @@ body {
 } 
   
 .control-buttons button:hover { 
-    background-color: #266094; 
-    transition: background-color 0.3s; 
+    background-color: #4da9ff6c; 
+    transition: background-color 0.1s; 
 }
+
+.control-buttons button {
+    font-size: 125%;
+}
+
+@media (max-width: 420px) {
+
+    .status {
+        color: white;
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .main { 
+        border-radius: 15px; 
+        padding: 10px 20px; 
+        width: 250px; 
+        height: 250px; 
+    } 
+
+    .timer-circle { 
+        border-radius: 50%; 
+        width: 200px; 
+        height: 200px; 
+        margin: 20px auto;
+        font-size: 25px; 
+        border: 8px solid #4da9ff; 
+    } 
+
+    .control-buttons { 
+        margin-top: 75px; 
+        display: flex; 
+        justify-content: center;
+    } 
+
+    .control-buttons button {
+        font-size: 80%;
+        margin: 0.1em;
+    }
+    
+  }

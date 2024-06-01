@@ -3,6 +3,10 @@ let minutes = 25;
 let seconds = 0; 
 let isPaused = true; 
 let enteredTime = null; 
+let pomodoroStatus = false;
+let pomodoroFokus;
+
+let statusHTML = document.getElementById('status');
 
 function playAudio(pos) {
     if (pos === 1) {
@@ -27,7 +31,50 @@ function updateTimer() {
   
     if (minutes === 0 && seconds === 0) { 
         clearInterval(timer);
-        playAudio(1);
+
+        if (pomodoroStatus === false) {
+            playAudio(1);
+        }
+
+        if (pomodoroStatus === true) {
+
+            if (pomodoroFokus === true) {
+                playAudio(1);
+                pomodoroFokus = !pomodoroFokus;
+                minutes = 5;
+                seconds = 5;
+                isPaused = false; 
+                const timerElement = 
+                    document.getElementById('timer'); 
+                timerElement.textContent = 
+                    formatTime(minutes, seconds); 
+                clearInterval(timer); 
+                const pauseResumeButton = 
+                    document.querySelector('.control-buttons button'); 
+                pauseResumeButton.textContent = 'Pause'; 
+                startTimer();
+                statusHTML.innerText = 'Pause';
+
+            } else if (pomodoroFokus === false) {
+                playAudio(2);
+                pomodoroFokus = !pomodoroFokus;
+                minutes = 25;
+                seconds = 5;
+                isPaused = false; 
+                const timerElement = 
+                    document.getElementById('timer'); 
+                timerElement.textContent = 
+                    formatTime(minutes, seconds); 
+                clearInterval(timer); 
+                const pauseResumeButton = 
+                    document.querySelector('.control-buttons button'); 
+                pauseResumeButton.textContent = 'Pause'; 
+                startTimer();
+                statusHTML.innerText = 'Fokus';
+
+            }
+        }
+
     } else if (!isPaused) { 
         if (seconds > 0) { 
             seconds--; 
@@ -93,3 +140,20 @@ function chooseTime() {
     } 
 } 
 
+function Pomodoro() {
+    statusHTML.innerText = 'Fokus';
+    pomodoroStatus = true;
+    pomodoroFokus = true;
+    minutes = 25;
+    seconds = 0;
+    isPaused = false; 
+    const timerElement = 
+        document.getElementById('timer'); 
+    timerElement.textContent = 
+        formatTime(minutes, seconds); 
+    clearInterval(timer); 
+    const pauseResumeButton = 
+        document.querySelector('.control-buttons button'); 
+    pauseResumeButton.textContent = 'Pause'; 
+    startTimer();
+}
