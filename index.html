@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hallo</h1>
+    <title>PomodoroS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <script src= 
+    'https://kit.fontawesome.com/a076d05399.js'
+                crossorigin='anonymous'> 
+          </script> 
+</head> 
+
+<body> 
+    <div class="main"> 
+        <div class="timer-circle" 
+                id="timer">25:00 
+            </div> 
+        <div class="control-buttons">
+            <button onclick="togglePauseResume()"> 
+                    Start 
+                </button> 
+            <button onclick="restartTimer()"> 
+                    Neustart 
+                </button> 
+            <button onclick="chooseTime()"> 
+                    Zeit wählen 
+                </button> 
+        </div> 
+    </div> 
+    <script src="script.js"></script> 
 </body>
 </html>
