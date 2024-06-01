@@ -1,0 +1,3 @@
+# PomodoroS
+
+Einfacher Pomodoro-Timer
