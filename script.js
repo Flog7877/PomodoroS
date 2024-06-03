@@ -6,7 +6,11 @@ let enteredTime = null;
 let pomodoroStatus = false;
 let pomodoroFokus;
 
+// MAIN THREAD 
+
 let statusHTML = document.getElementById('status');
+
+const worker = new Worker('worker-script.js');
 
 // Icons
 let iconStart = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="100" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg> ';
@@ -51,8 +55,12 @@ function playAudio(pos) {
   }
   
 function startTimer() { 
-    timer = setInterval(updateTimer, 1000); 
+    worker.postMessage({ turn: "on" });
 } 
+
+function stopTimer() {
+    worker.postMessage({ turn: "off" });
+}
   
 function updateTimer() { 
     const timerElement = 
@@ -61,7 +69,7 @@ function updateTimer() {
         formatTime(minutes, seconds); 
   
     if (minutes === 0 && seconds === 0) { 
-        clearInterval(timer);
+        stopTimer();
 
         if (pomodoroStatus === false) {
             playAudio(1);
@@ -81,7 +89,7 @@ function updateTimer() {
                     document.getElementById('timer'); 
                 timerElement.textContent = 
                     formatTime(minutes, seconds); 
-                clearInterval(timer); 
+                stopTimer(); 
                 const pauseResumeButton = 
                     document.querySelector('.control-buttons button'); 
                 pauseResumeButton.innerHTML = pauseText; 
@@ -99,7 +107,7 @@ function updateTimer() {
                     document.getElementById('timer'); 
                 timerElement.textContent = 
                     formatTime(minutes, seconds); 
-                clearInterval(timer); 
+                stopTimer(); 
                 const pauseResumeButton = 
                     document.querySelector('.control-buttons button'); 
                 pauseResumeButton.innerHTML = pauseText; 
@@ -129,7 +137,7 @@ function togglePauseResume() {
     isPaused = !isPaused; 
   
     if (isPaused) { 
-        clearInterval(timer); 
+        stopTimer(); 
         pauseResumeButton.innerHTML = iconStart +' Start'; 
     } else { 
         startTimer(); 
@@ -138,7 +146,7 @@ function togglePauseResume() {
 } 
   
 function restartTimer() { 
-    clearInterval(timer); 
+    stopTimer(); 
     minutes = enteredTime || 25; 
     seconds = 0; 
     isPaused = false; 
@@ -188,7 +196,7 @@ function chooseTime(minuten, sekunden) {
             document.getElementById('timer'); 
         timerElement.textContent = 
             formatTime(minutes, seconds); 
-        clearInterval(timer); 
+        stopTimer(); 
         const pauseResumeButton = 
             document.querySelector('.control-buttons button'); 
         pauseResumeButton.innerHTML = pauseText; 
@@ -240,9 +248,14 @@ function Pomodoro() {
         document.getElementById('timer'); 
     timerElement.textContent = 
         formatTime(minutes, seconds); 
-    clearInterval(timer); 
+    stopTimer(); 
     const pauseResumeButton = 
         document.querySelector('.control-buttons button'); 
     pauseResumeButton.innerHTML = pauseText; 
     startTimer();
+}
+
+worker.onmessage = ({ data: { currentState }}) => {
+    //console.log(currentState);
+    updateTimer();
 }
