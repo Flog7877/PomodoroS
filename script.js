@@ -104,7 +104,7 @@ function updateTimer() {
                     document.querySelector('.control-buttons button'); 
                 pauseResumeButton.innerHTML = pauseText; 
                 startTimer();
-                statusHTML.innerText = iconFocus + ' Fokus';
+                statusHTML.innerHTML = iconFocus + ' Fokus';
 
             }
         }
