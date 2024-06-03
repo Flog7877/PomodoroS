@@ -104,6 +104,18 @@ input {
     font-size: 125%;
 }
 
+@media (max-width: 1400px) {
+    body {
+        transform: scale(0.8);
+        transform-origin: 0, 0; 
+        max-height: 100vh;
+    }
+
+    .status {
+        top: -2em !important;
+    }
+}
+
 @media (max-width: 550px) {
 
     .status {
