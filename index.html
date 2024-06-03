@@ -6,33 +6,39 @@
     <title>PomodoroS</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="icon" type="image/x-icon" href="icon.png">
-    <script src= 
+    <!--<script src= 
     'https://kit.fontawesome.com/a076d05399.js'
                 crossorigin='anonymous'> 
-          </script> 
+          </script>--> 
 </head> 
-
 <body> 
-    <div class="status" id="status"></div>
+    <div class="status" id="status"><svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer" style="vertical-align: -.15em; margin-right: -.2em;"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg> Timer</div>
     <div class="main"> 
         <div class="timer-circle" 
                 id="timer">25:00  
             </div>
         <div class="control-buttons">
             <button onclick="togglePauseResume()"> 
-                    Start 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="100" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg> Start 
                 </button> 
             <button onclick="restartTimer()"> 
-                    Neustart 
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" style="vertical-align: -.1em;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Neustart 
                 </button> 
-            <button onclick="chooseTime()"> 
+            <!--<button onclick="chooseTime()"> 
                     Zeit wählen 
-                </button> 
+                </button>--> 
             <button onclick="Pomodoro()"> 
-                Pomodoro 
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer-reset" style="vertical-align: -.15em;"><path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/></svg> Pomodoro 
                 </button> 
         </div> 
     </div> 
+    <div class="Eingabe"><br>
+        <form>
+            <input type="text" class="html-duration-picker zeit">
+            <button type="submit" class="Fertig"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="100" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg> Eingabe</button>
+        </form>
+    </div>
     <script src="script.js"></script> 
+    <script src="html-duration-picker.min.js"></script>
 </body>
 </html>

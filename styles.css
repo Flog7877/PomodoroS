@@ -9,10 +9,46 @@ body {
     margin: 0; 
 } 
 
+.Fertig {
+    font-size: 125%;
+}
+
+input {
+    border-radius: 15px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.322);
+}
+
+.zeit {
+    font-size: 125%;
+    text-align: left !important;
+    width: 130px !important;
+}
+
+
 .status {
-    color: white;
+    color: currentColor;
     font-weight: bold;
-    font-size: 75px;
+    font-size: 75px;;
+    background-color: #fff; 
+    border-radius: 15px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    padding: .25em .5em;
+    margin-bottom: .25em;
+
+}
+
+.html-duration-picker-input-controls-wrapper {
+    width: auto !important;
+    padding-right: 1em;
+}
+.controls {
+    left: 105px !important;
+}
+.scroll-btn {
+    border-radius: 15px;
 }
   
 .main { 
@@ -36,7 +72,7 @@ body {
     justify-content: center; 
     font-size: 50px; 
     color: currentColor; 
-    border: 8px solid #4da9ff; 
+    border: 8px solid #705dcf; 
 } 
   
 .control-buttons { 
@@ -45,8 +81,8 @@ body {
     justify-content: space-evenly; 
 } 
   
-.control-buttons button { 
-    background-color: #4da9ff; 
+.control-buttons button, .Fertig { 
+    background-color: #705dcf; 
     /*color: #fff;*/
     color: black; 
     border: none; 
@@ -55,9 +91,13 @@ body {
     cursor: pointer; 
 } 
   
-.control-buttons button:hover { 
-    background-color: #4da9ff6c; 
+.control-buttons button:hover, .Fertig:hover { 
+    background-color: #b5a9ff; 
     transition: background-color 0.1s; 
+}
+
+.control-buttons button:active, .Fertig:active {
+    background-color: #634eec;
 }
 
 .control-buttons button {
