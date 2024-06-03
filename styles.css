@@ -104,10 +104,10 @@ input {
     font-size: 125%;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 550px) {
 
     .status {
-        color: white;
+        color: black;
         font-weight: bold;
         font-size: 50px;
     }
@@ -125,18 +125,69 @@ input {
         height: 200px; 
         margin: 20px auto;
         font-size: 25px; 
-        border: 8px solid #4da9ff; 
+        border: 8px solid #705dcf; 
+        margin-bottom: 1.5em;
     } 
 
     .control-buttons { 
-        margin-top: 75px; 
-        display: flex; 
-        justify-content: center;
+        position: absolute;
+        display: contents;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
     } 
 
     .control-buttons button {
+        position: relative;
         font-size: 80%;
         margin: 0.1em;
+        margin-top: 0.3em;
+    }
+
+    .Eingabe {
+        position: absolute; 
+        margin-top: 42em;
+    }
+    
+  }
+
+
+  @media (max-width: 250px) {
+
+    .status {
+        visibility: hidden;
+    position: absolute;
+    top: -9999px;        
+    }
+
+    .main { 
+        border-radius: 15px; 
+        padding: 10px 20px; 
+        width: 150px; 
+        height: 150px; 
+    } 
+
+    .timer-circle { 
+        border-radius: 50%; 
+        width: 100px; 
+        height: 100px; 
+        margin: 20px auto;
+        font-size: 25px; 
+        border: 8px solid #705dcf; 
+        margin-bottom: 1.5em;
+    } 
+
+    .control-buttons { 
+        visibility: hidden;
+    position: absolute;
+    top: -9999px;
+    } 
+
+
+    .Eingabe {
+        visibility: hidden;
+    position: absolute;
+    top: -9999px;
     }
     
   }
