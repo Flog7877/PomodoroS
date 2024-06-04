@@ -129,7 +129,7 @@ input {
 
 @media (max-width: 550px) {
   body {
-      transform: scale(70%);
+      transform: scale(65%);
       transform-origin: 0, 0; 
       max-height: 80vh;
   }
