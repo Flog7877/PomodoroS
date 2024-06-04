@@ -6,6 +6,10 @@ let enteredTime = null;
 let pomodoroStatus = false;
 let pomodoroFokus;
 
+if (Notification.permission !== 'granted') {
+    Notification.requestPermission();
+}
+
 // MAIN THREAD 
 
 let statusHTML = document.getElementById('status');

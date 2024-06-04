@@ -11,7 +11,7 @@
                 crossorigin='anonymous'> 
           </script>--> 
 </head> 
-<body> 
+<body id="koerper"> 
     <div class="status" id="status"><svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer" style="vertical-align: -.15em; margin-right: -.2em;"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg> Timer</div>
     <div class="main"> 
         <div class="timer-circle" 
@@ -35,6 +35,53 @@
             <button type="submit" class="Fertig"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="100" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg> Eingabe</button>
         </form>
     </div>
+    <div class="toggleDarkmode">
+        <div class="wrap">
+            <span class="toggle-switch-darkMode">
+                <span class="input-wrap">
+                    <input type="checkbox" id="darkMode-toggle" value="darkMode-toggle">
+                    <label for="darkMode-toggle">Select</label>
+                </span>
+            </span>
+            <span class="toggleLabelDarkmode">Darkmode</span>
+        </div>  
+    </div>
+    <script>
+
+        let cookieATM = document.cookie;
+
+        //console.log(cookieATM);
+
+        let toggleDarkMode = document.getElementById('darkMode-toggle');
+
+        let seite = document.getElementById('koerper');
+
+        let mode;
+
+        if (cookieATM === 'theme=dark') {
+            toggleDarkMode.checked = true;
+            seite.classList.add('darkMode');
+        }
+
+        function ausgabe() {
+            
+            // console.log('Geändert');
+            
+            seite.classList.toggle('darkMode');
+
+            if (toggleDarkMode.checked === true) {
+                document.cookie = "theme=dark; path=/";
+            } else if (toggleDarkMode.checked === false) {
+                document.cookie = "theme=normal; path=/";
+            }
+
+            //console.log(mode);
+            //console.log(document.cookie);
+        }
+
+        let DarkModeStatus = toggleDarkMode.addEventListener('change', ausgabe);
+
+    </script>
     <script src="script.js"></script> 
     <script src="html-duration-picker.min.js"></script>
 </body>

@@ -9,6 +9,11 @@ body {
     margin: 0; 
 } 
 
+:root {
+    --main-light: #6200EE;
+    --main-dark: #BB86FC;
+  }
+
 .Fertig {
     font-size: 125%;
 }
@@ -21,7 +26,7 @@ input {
 }
 
 .zeit {
-    font-size: 125%;
+    font-size: 110%;
     text-align: left !important;
     width: 130px !important;
 }
@@ -72,7 +77,8 @@ input {
     justify-content: center; 
     font-size: 50px; 
     color: currentColor; 
-    border: 8px solid #705dcf; 
+    border: 8px solid; 
+    border-color: var(--main-light); 
 } 
   
 .control-buttons { 
@@ -82,7 +88,7 @@ input {
 } 
   
 .control-buttons button, .Fertig { 
-    background-color: #705dcf; 
+    background-color: var(--main-light); 
     /*color: #fff;*/
     color: black; 
     border: none; 
@@ -114,6 +120,11 @@ input {
     .status {
         top: -2em !important;
     }
+
+    .control-buttons { 
+        margin-top: 35px;
+        padding-bottom: 1em;
+    }
 }
 
 /*I fogor*/
@@ -139,7 +150,7 @@ input {
         height: 200px; 
         margin: 20px auto;
         font-size: 25px; 
-        border: 8px solid #705dcf; 
+        border: 8px solid var(--main-light); 
         margin-bottom: 1.5em;
     } 
 
@@ -187,7 +198,7 @@ input {
         height: 100px; 
         margin: 20px auto;
         font-size: 25px; 
-        border: 8px solid #705dcf; 
+        border: 8px solid var(--main-light); 
         margin-bottom: 1.5em;
     } 
 
@@ -204,4 +215,103 @@ input {
     top: -9999px;
     }
     
+  }
+
+
+.toggleDarkmode {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.darkMode {
+    background-color: #121212;
+}
+
+.toggle-switch-darkMode label {
+    display: inline-block;
+    position: relative;
+    height: 22px;
+    width: 45px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+    font-size: 0;
+    color: transparent;
+    border-radius: 22px;
+  }
+  
+  .toggle-switch-darkMode label:after {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 1px;
+    right: 22px;
+    border-radius: 50%;
+    background-color: #e8e8e8;
+    box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.15);
+  
+  }
+  
+  .toggle-switch-darkMode input:checked + label {
+    background-color: var(--main-dark);
+  }
+  
+  .toggle-switch-darkMode input:checked + label:after {
+    right: 1px;
+    background-color: #fff;
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-switch-darkMode input {
+    position: absolute !important;
+    width: 0.5px;
+    height: 0.5px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    bottom: 0;
+  }
+  
+  .toggle-switch-darkMode label {
+    transition: 500ms ease;
+  }
+  
+  .toggle-switch-darkMode label:after {
+    transition: right 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+  }
+  
+  .toggleLabelDarkmode {
+    vertical-align: bottom;
+  }
+
+  .darkMode, .darkMode .html-duration-picker-input-controls-wrapper input{
+    color: white;
+  }
+
+  .darkMode .control-buttons button, .darkMode .Fertig {
+    color: black;
+  }
+
+  .control-buttons button, .Fertig {
+    color: white;
+  }
+
+  .darkMode .main, .darkMode .status, .darkMode .html-duration-picker-input-controls-wrapper input {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* #7f6df2 */
+
+  .darkMode .timer-circle {
+    border: 8px solid var(--main-dark);
+  } 
+  
+  .darkMode .Fertig, .darkMode .control-buttons button {
+    background-color: var(--main-dark);
+  }
+
+  .lucide-pause, .lucide-play{
+    /*fill: currentColor;*/
+    fill: none;
   }
