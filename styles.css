@@ -127,14 +127,35 @@ input {
     }
 }
 
+@media (max-width: 550px) {
+  body {
+      transform: scale(70%);
+      transform-origin: 0, 0; 
+      max-height: 80vh;
+  }
+
+  .status {
+      top: -2em !important;
+  }
+
+  .control-buttons { 
+    margin-top: 75px;
+    padding-bottom: 1em;
+  }
+}
+
 /*I fogor*/
 
-@media (max-width: 550px) {
+/*@media (max-width: 550px) {
 
     .status {
         color: black;
         font-weight: bold;
         font-size: 50px;
+    }
+
+    .darkMode .status {
+      color: white;
     }
 
     .main { 
@@ -175,7 +196,7 @@ input {
     }
     
   }
-
+*/
 
   @media (max-width: 250px) {
 
