@@ -4,7 +4,12 @@ let seconds = 0;
 let isPaused = true; 
 let enteredTime = null; 
 let pomodoroStatus = false;
+let sitzungStatus = false;
 let pomodoroFokus;
+let runden = 0;
+let abgeschlosseneRunden = 0;
+
+console.log(cookieATM);
 
 if (Notification.permission !== 'granted') {
     Notification.requestPermission();
@@ -13,6 +18,7 @@ if (Notification.permission !== 'granted') {
 // MAIN THREAD 
 
 let statusHTML = document.getElementById('status');
+let rundneTrackerHTML = document.getElementById('runden');
 
 const worker = new Worker('worker-script.js');
 
@@ -25,6 +31,22 @@ let iconBreak = '<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" 
 
 let pauseText = iconPause + ' Pause';
 let defaultStatus = '<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer" style="vertical-align: -.15em; margin-right: -.2em;"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg> Timer';
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  } 
 
 function notify() {
     const notification = new Notification('Timer:', {
@@ -75,7 +97,7 @@ function updateTimer() {
     if (minutes === 0 && seconds === 0) { 
         stopTimer();
 
-        if (pomodoroStatus === false) {
+        if ((pomodoroStatus === false) && (sitzungStatus === false)) {
             playAudio(1);
             notify();
         }
@@ -121,6 +143,12 @@ function updateTimer() {
             }
         }
 
+        if (sitzungStatus === true) {
+            notifySitzung();
+            Sitzung();
+            rundenTracker();
+        }
+
     } else if (!isPaused) { 
         if (seconds > 0) { 
             seconds--; 
@@ -164,6 +192,7 @@ function restartTimer() {
     startTimer(); 
     statusHTML.innerHTML = defaultStatus;
     pomodoroStatus = false;
+    sitzungStatus = false;
 } 
 
 /*
@@ -206,7 +235,9 @@ function chooseTime(minuten, sekunden) {
         pauseResumeButton.innerHTML = pauseText; 
         startTimer(); 
         statusHTML.innerHTML = defaultStatus;
+        rundneTrackerHTML.innerText = '';
         pomodoroStatus = false;
+        sitzungStatus = false;
     } else { 
         alert('Bitte eine Zahl echt'+ 
               ' größer als Null eingeben!'); 
@@ -262,4 +293,61 @@ function Pomodoro() {
 worker.onmessage = ({ data: { currentState }}) => {
     //console.log(currentState);
     updateTimer();
+}
+
+function notifySitzung() { /// Steht noch aus
+    let rundenMinuten = runden * 15;
+    const notification = new Notification('Noch bei der Sache?', {
+        body: `Abgeschlossene Runden: ${runden}, das entspricht ${rundenMinuten} Minuten.`,
+        icon: `alert.png`
+    });
+}
+
+function ErsteSitzung() {
+    runden = 1;
+    statusHTML.innerHTML = `${iconFocus} Runde: ${runden}`;
+    if (sitzungStatus !== true) {
+        sitzungStatus = true;
+    }
+    minutes = 15;
+    seconds = 0;
+    isPaused = false; 
+    const timerElement = 
+        document.getElementById('timer'); 
+    timerElement.textContent = 
+        formatTime(minutes, seconds); 
+    stopTimer(); 
+    const pauseResumeButton = 
+        document.querySelector('.control-buttons button'); 
+    pauseResumeButton.innerHTML = pauseText; 
+    startTimer();
+
+}
+
+function Sitzung() {
+    runden++;
+    statusHTML.innerHTML = `${iconFocus} Runde: ${runden}`;
+    if (sitzungStatus !== true) {
+        sitzungStatus = true;
+    }
+    minutes = 15;
+    seconds = 0;
+    isPaused = false; 
+    const timerElement = 
+        document.getElementById('timer'); 
+    timerElement.textContent = 
+        formatTime(minutes, seconds); 
+    stopTimer(); 
+    const pauseResumeButton = 
+        document.querySelector('.control-buttons button'); 
+    pauseResumeButton.innerHTML = pauseText; 
+    startTimer();
+
+}
+
+function rundenTracker() {
+    abgeschlosseneRunden++;
+    document.cookie = `finishedRounds=${abgeschlosseneRunden}; path=/`;
+    rundneTrackerHTML.innerHTML = `Abgeschlossene Runden: ${getCookie('finishedRounds')}`;
+    console.log(cookieATM);
 }
